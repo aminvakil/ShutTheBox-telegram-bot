@@ -1,5 +1,5 @@
 <?php
-$db = new SQLite3('bestdicer.db');
+$db = new SQLite3('shutthebox.db');
 $query = $db->prepare('SELECT chatId, diceId, boardId FROM messages WHERE chatId = ?');
 $query->bindParam(1, $chatId);
 $result = $query->execute();

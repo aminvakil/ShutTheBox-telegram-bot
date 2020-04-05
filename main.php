@@ -1,7 +1,7 @@
 <?php
 //error_reporting(E_ALL);
 require_once 'token.php';
-$dbpath = 'bestdicer.db';
+$dbpath = 'shutthebox.db';
 if (!file_exists($dbpath)) {
     require_once 'dbcreate.php';
 }

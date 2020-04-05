@@ -1,2 +1,4 @@
-# bestdicer-telegram-bot
-A telegram bot which I don't know what it should done yet 
+# Shut The Box
+Shut The Box is a dice game.
+
+I will explain more when it gets more complete.

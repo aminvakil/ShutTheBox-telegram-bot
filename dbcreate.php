@@ -1,7 +1,7 @@
 <?php
    class MyDB extends SQLite3 {
       function __construct() {
-         $this->open('bestdicer.db');
+         $this->open('shutthebox.db');
       }
    }
    $db = new MyDB();
