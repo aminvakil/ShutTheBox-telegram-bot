@@ -1,6 +1,10 @@
 <?php
 //error_reporting(E_ALL);
 require_once 'token.php';
+$dbpath = 'bestdicer.db';
+if (!file_exists($dbpath)) {
+    require_once 'dbcreate.php';
+}
 $website = "https://api.telegram.org/bot" . $botToken;
 $update = file_get_contents("php://input");
 $updateArray = json_decode($update, TRUE);
@@ -12,13 +16,18 @@ function sendMessage($chatId, $message) {
     $url = $GLOBALS[website]."/sendmessage?chat_id=".$chatId."&text=".urlencode($message);
     file_get_contents($url);
 }
+function deleteMessage($chatId, $message_id) {
+    $url = $GLOBALS[website]."/deleteMessage?chat_id=".$chatId."&message_id=".$message_id;
+    file_get_contents($url);
+}
 function sendDice($chatId,$message_id) {
     $url = $GLOBALS[website]."/sendDice?chat_id=".$chatId."&reply_to_message_id=".$message_id;
-    file_get_contents($url);
+    $message = json_decode(file_get_contents($url), TRUE);
+    return $message["result"]["message_id"];
 }
 set_time_limit(0);
 ini_set('max_execution_time', 0);
-//sendMessage ($chatId, $updateArray["message"]["text"]);
-//sendMessage ($chatId, $message_id);
-sendDice ($chatId,$message_id);
+$diceId = sendDice ($chatId,$message_id);
+$boardId= "222";
+require_once 'dbupdate.php';
 ?>
