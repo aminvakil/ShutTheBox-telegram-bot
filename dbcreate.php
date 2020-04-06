@@ -13,9 +13,9 @@
 
    $sql =<<<EOF
       CREATE TABLE LASTMESSAGES
-      (CHATID TEXT PRIMARY KEY     NOT NULL,
-      DICE           TEXT    NOT NULL,
-      BOARD          TEXT     NOT NULL);
+      (chatId TEXT PRIMARY KEY     NOT NULL,
+      diceId           TEXT    NOT NULL,
+      boardId          TEXT     NOT NULL);
 EOF;
 
    $ret = $db->exec($sql);

@@ -1,5 +1,4 @@
 <?php
-//error_reporting(E_ALL);
 require_once 'token.php';
 $dbpath = 'shutthebox.db';
 if (!file_exists($dbpath)) {
@@ -23,11 +22,15 @@ function deleteMessage($chatId, $message_id) {
 function sendDice($chatId,$message_id) {
     $url = $GLOBALS[website]."/sendDice?chat_id=".$chatId."&reply_to_message_id=".$message_id;
     $message = json_decode(file_get_contents($url), TRUE);
-    return $message["result"]["message_id"];
+    return array($message["result"]["message_id"],$message["result"]["dice"]["value"]);
 }
 set_time_limit(0);
 ini_set('max_execution_time', 0);
-$diceId = sendDice ($chatId,$message_id);
+$dice = sendDice ($chatId, $message_id);
+$diceId = $dice[0];
+$diceValue = $dice[1];
+sendMessage ($chatId, $diceId);
+sendMessage ($chatId, $diceValue);
 $boardId= "222";
 require_once 'dbupdate.php';
 ?>
