@@ -29,8 +29,7 @@ ini_set('max_execution_time', 0);
 $dice = sendDice ($chatId, $message_id);
 $diceId = $dice[0];
 $diceValue = $dice[1];
-sendMessage ($chatId, $diceId);
-sendMessage ($chatId, $diceValue);
 $boardId= "222";
 require_once 'dbupdate.php';
+require_once 'numbers.php';
 ?>
