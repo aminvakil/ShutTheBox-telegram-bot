@@ -56,7 +56,4 @@ $numbers[12][9] = "3,4,5";
 $numbers[12][10] = "4,7";
 $numbers[12][11] = "5,6";
 $numbers[12][12] = "12";
-foreach ($numbers[$diceValue] as $diceValue) {
-    sendMessage ($chatId, $diceValue);
-}
 ?>

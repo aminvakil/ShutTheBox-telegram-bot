@@ -26,10 +26,16 @@ function sendDice($chatId,$message_id) {
 }
 set_time_limit(0);
 ini_set('max_execution_time', 0);
-$dice = sendDice ($chatId, $message_id);
-$diceId = $dice[0];
-$diceValue = $dice[1];
+for ($i = 0; $i <= 1; $i++) {
+    $dice[] = sendDice ($chatId, $message_id);
+    $diceId[] = $dice[$i][0];
+    $diceValue[] = $dice[$i][1];
+}
 $boardId= "222";
 require_once 'dbupdate.php';
+/*$sum = array_sum($diceValue);
 require_once 'numbers.php';
+foreach ($numbers[$sum] as $diceValue) {
+    sendMessage ($chatId, $diceValue);
+}*/
 ?>
