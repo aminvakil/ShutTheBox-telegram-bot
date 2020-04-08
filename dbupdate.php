@@ -5,13 +5,15 @@ $query->bindParam(1, $chatId);
 $result = $query->execute();
 $row = $result->fetchArray();
 
+deleteMessage ($chatId, $row['boardId']);
+
 foreach (unserialize($row['diceId']) as $diceIdDel) {
     deleteMessage ($chatId, $diceIdDel);
 }
 
 $query = $db->prepare('
-INSERT OR REPLACE INTO messages (chatId, diceId, boardId) 
-  VALUES (  ?, 
+INSERT OR REPLACE INTO messages (chatId, diceId, boardId)
+  VALUES (  ?,
             ?,
             ?
           );

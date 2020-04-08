@@ -24,18 +24,21 @@ function sendDice($chatId,$message_id) {
     $message = json_decode(file_get_contents($url), TRUE);
     return array($message["result"]["message_id"],$message["result"]["dice"]["value"]);
 }
+function sendBoard($chatId, $message, $options) {
+    $url = $GLOBALS[website]."/sendmessage?chat_id=".$chatId."&text=".urlencode($message)."&reply_markup=".json_encode($options);
+    $message = json_decode(file_get_contents($url), TRUE);
+    return $message["result"]["message_id"];
+}
 set_time_limit(0);
 ini_set('max_execution_time', 0);
-for ($i = 0; $i <= 1; $i++) {
+for ($i = 0; $i < 2; $i++) {
     $dice[] = sendDice ($chatId, $message_id);
     $diceId[] = $dice[$i][0];
     $diceValue[] = $dice[$i][1];
 }
-$boardId= "222";
-require_once 'dbupdate.php';
-/*$sum = array_sum($diceValue);
+$board= "What do you want to remove?";
+$sum = array_sum($diceValue);
 require_once 'numbers.php';
-foreach ($numbers[$sum] as $diceValue) {
-    sendMessage ($chatId, $diceValue);
-}*/
+require_once 'board.php';
+require_once 'dbupdate.php';
 ?>
